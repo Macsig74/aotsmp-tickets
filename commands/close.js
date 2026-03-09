@@ -1,17 +1,9 @@
 // commands/close.js
-const {
-  SlashCommandBuilder,
-  PermissionFlagsBits,
-  EmbedBuilder,
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-} = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const config = require('../config');
-const { getTicket, setTicket } = require('../utils/db');
+const { getTicket, setTicket, getSetup } = require('../utils/db');
 const { requireStaff, requireTicketChannel } = require('../utils/permissions');
-const { successEmbed, errorEmbed, logEmbed } = require('../utils/embeds');
-const { getSetup } = require('../utils/db');
+const { logEmbed } = require('../utils/embeds');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -33,15 +25,13 @@ module.exports = {
 
     await interaction.deferReply();
 
-    // === DM à l'utilisateur ===
+    // DM au joueur
     try {
       const ticketUser = await guild.members.fetch(ticket.userId);
       const dmEmbed = new EmbedBuilder()
         .setColor(config.colors.danger)
         .setTitle('🔒 Ton ticket a été fermé')
-        .setDescription(
-          `Ton ticket **#${channel.name}** sur le serveur **${guild.name}** a été fermé par <@${interaction.user.id}>.`
-        )
+        .setDescription(`Ton ticket **#${channel.name}** sur **${guild.name}** a été fermé par <@${interaction.user.id}>.`)
         .addFields(
           { name: '📝 Raison', value: raison, inline: false },
           { name: '👮 Fermé par', value: `${interaction.user.tag}`, inline: true },
@@ -49,13 +39,9 @@ module.exports = {
         )
         .setFooter({ text: 'AOTSMP • Système de Support' })
         .setTimestamp();
-
       await ticketUser.user.send({ embeds: [dmEmbed] });
-    } catch (e) {
-      console.log(`[CLOSE] Impossible d'envoyer le DM à ${ticket.userId}: ${e.message}`);
-    }
+    } catch (e) {}
 
-    // === Embed de confirmation dans le ticket ===
     const confirmEmbed = new EmbedBuilder()
       .setColor(config.colors.danger)
       .setTitle('🔒 Ticket en cours de fermeture...')
@@ -66,30 +52,17 @@ module.exports = {
       .setTimestamp();
 
     await interaction.editReply({ embeds: [confirmEmbed] });
-
-    // === Déplacer dans catégorie fermée & lock ===
     await new Promise(r => setTimeout(r, 2000));
 
     if (setup?.categoryClosedId) {
-      await channel.setParent(setup.categoryClosedId, { lockPermissions: true });
+      await channel.setParent(setup.categoryClosedId, { lockPermissions: false });
     }
 
-    // Enlever l'accès au créateur du ticket
-    try {
-      await channel.permissionOverwrites.edit(ticket.userId, {
-        SendMessages: false,
-        ViewChannel: false,
-      });
-    } catch (e) {}
-
-    // Mettre à jour le nom du channel
-    const oldName = channel.name.replace('🟢', '').replace('🔴', '').replace('⏳', '').trim();
+    const oldName = channel.name.replace(/^[🟢🔴⏳📋]-?/, '');
     await channel.setName(`🔴-${oldName}`);
 
-    // Update DB
     setTicket(channel.id, { status: 'closed', closedBy: interaction.user.id, closeReason: raison, closedAt: Date.now() });
 
-    // === LOG ===
     if (setup?.logsChannelId) {
       const logsChannel = guild.channels.cache.get(setup.logsChannelId);
       if (logsChannel) {
