@@ -28,7 +28,7 @@ module.exports = {
     try {
       const mkCat = (name, staffAllow, extraDeny = []) => guild.channels.create({
         name, type: ChannelType.GuildCategory,
-        permissionOverwrites: [
+        permOverwrites: [
           { id: guild.roles.everyone, deny: ['ViewChannel', ...extraDeny] },
           { id: staffRole.id, allow: staffAllow },
         ],
@@ -41,7 +41,7 @@ module.exports = {
 
       const panelChannel = await guild.channels.create({
         name: config.channels.ticketPanel, type: ChannelType.GuildText,
-        permissionOverwrites: [
+        permOverwrites: [
           { id: guild.roles.everyone, allow: ['ViewChannel','ReadMessageHistory'], deny: ['SendMessages'] },
           { id: staffRole.id, allow: ['ViewChannel','SendMessages','ReadMessageHistory'] },
         ],
@@ -49,7 +49,7 @@ module.exports = {
 
       const logsChannel = await guild.channels.create({
         name: config.channels.logs, type: ChannelType.GuildText,
-        permissionOverwrites: [
+        permOverwrites: [
           { id: guild.roles.everyone, deny: ['ViewChannel'] },
           { id: staffRole.id, allow: ['ViewChannel','ReadMessageHistory'] },
         ],
