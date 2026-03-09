@@ -1,62 +1,27 @@
-// utils/embeds.js — Embeds réutilisables
 const { EmbedBuilder } = require('discord.js');
 const config = require('../config');
 
-const { colors, emojis } = config;
-
 function successEmbed(title, description) {
-  return new EmbedBuilder()
-    .setColor(colors.success)
-    .setTitle(`${emojis.success} ${title}`)
-    .setDescription(description)
-    .setTimestamp();
+  return new EmbedBuilder().setColor(config.colors.success).setTitle(`✅ ${title}`).setDescription(description).setTimestamp();
 }
-
 function errorEmbed(title, description) {
-  return new EmbedBuilder()
-    .setColor(colors.danger)
-    .setTitle(`${emojis.error} ${title}`)
-    .setDescription(description)
-    .setTimestamp();
+  return new EmbedBuilder().setColor(config.colors.danger).setTitle(`❌ ${title}`).setDescription(description).setTimestamp();
 }
-
 function infoEmbed(title, description) {
-  return new EmbedBuilder()
-    .setColor(colors.info)
-    .setTitle(`${emojis.info} ${title}`)
-    .setDescription(description)
-    .setTimestamp();
+  return new EmbedBuilder().setColor(config.colors.info).setTitle(`ℹ️ ${title}`).setDescription(description).setTimestamp();
 }
-
-function ticketEmbed(title, description, color = colors.primary) {
-  return new EmbedBuilder()
-    .setColor(color)
-    .setTitle(title)
-    .setDescription(description)
-    .setTimestamp();
-}
-
 function logEmbed(action, ticket, executor, reason = null) {
-  const colorMap = {
-    'Ouvert': colors.success,
-    'Fermé': colors.danger,
-    'Renommé': colors.info,
-    'En Attente': colors.later,
-    'Candidature': colors.candid,
-  };
-
+  const colorMap = { 'Ouvert': config.colors.success, 'Fermé': config.colors.danger, 'Renommé': config.colors.info, 'En Attente': config.colors.later };
   const embed = new EmbedBuilder()
-    .setColor(colorMap[action] || colors.primary)
-    .setTitle(`${emojis.ticket} Ticket ${action}`)
+    .setColor(colorMap[action] || config.colors.primary)
+    .setTitle(`🎫 Ticket ${action}`)
     .addFields(
       { name: '🆔 Ticket', value: `#${ticket.name || ticket.channelId}`, inline: true },
       { name: '👤 Utilisateur', value: `<@${ticket.userId}>`, inline: true },
       { name: '👮 Staff', value: executor ? `<@${executor.id}>` : 'Système', inline: true },
-    )
-    .setTimestamp();
-
+    ).setTimestamp();
   if (reason) embed.addFields({ name: '📝 Raison', value: reason, inline: false });
   return embed;
 }
 
-module.exports = { successEmbed, errorEmbed, infoEmbed, ticketEmbed, logEmbed };
+module.exports = { successEmbed, errorEmbed, infoEmbed, logEmbed };
