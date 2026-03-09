@@ -26,36 +26,21 @@ module.exports = {
     });
 
     try {
-      const mkCat = (name, staffAllow) => guild.channels.create({
-        name,
-        type: ChannelType.GuildCategory,
-        permissionOverwrites: [
-          { id: guild.roles.everyone, deny: ['ViewChannel'] },
-          { id: staffRole.id, allow: staffAllow },
-        ],
-      });
-
-      const catOpen    = await mkCat(config.categories.ticketsOuverts, ['ViewChannel','ManageChannels','SendMessages','ReadMessageHistory']);
-      const catClosed  = await mkCat(config.categories.ticketsFermes,  ['ViewChannel','ReadMessageHistory']);
-      const catCandid  = await mkCat(config.categories.candid,         ['ViewChannel','ManageChannels','SendMessages','ReadMessageHistory']);
-      const catAttente = await mkCat(config.categories.attente,        ['ViewChannel','ManageChannels','SendMessages','ReadMessageHistory']);
+      const catOpen    = await guild.channels.create({ name: config.categories.ticketsOuverts, type: ChannelType.GuildCategory });
+      const catClosed  = await guild.channels.create({ name: config.categories.ticketsFermes,  type: ChannelType.GuildCategory });
+      const catCandid  = await guild.channels.create({ name: config.categories.candid,         type: ChannelType.GuildCategory });
+      const catAttente = await guild.channels.create({ name: config.categories.attente,        type: ChannelType.GuildCategory });
 
       const panelChannel = await guild.channels.create({
         name: config.channels.ticketPanel,
         type: ChannelType.GuildText,
-        permissionOverwrites: [
-          { id: guild.roles.everyone, allow: ['ViewChannel','ReadMessageHistory'], deny: ['SendMessages'] },
-          { id: staffRole.id, allow: ['ViewChannel','SendMessages','ReadMessageHistory'] },
-        ],
+        parent: catOpen.id,
       });
 
       const logsChannel = await guild.channels.create({
         name: config.channels.logs,
         type: ChannelType.GuildText,
-        permissionOverwrites: [
-          { id: guild.roles.everyone, deny: ['ViewChannel'] },
-          { id: staffRole.id, allow: ['ViewChannel','ReadMessageHistory'] },
-        ],
+        parent: catOpen.id,
       });
 
       setSetup(guild.id, {
@@ -99,7 +84,7 @@ module.exports = {
         embeds: [new EmbedBuilder()
           .setColor(config.colors.success)
           .setTitle('✅ Setup terminé !')
-          .setDescription('Le système de tickets a été configuré avec succès.')
+          .setDescription('Catégories et salons créés.\n⚠️ **Configure les permissions manuellement sur Discord.**')
           .addFields(
             { name: '📂 Tickets Ouverts', value: catOpen.toString(),      inline: true },
             { name: '🔒 Tickets Fermés',  value: catClosed.toString(),    inline: true },
