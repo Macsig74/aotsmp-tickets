@@ -1,0 +1,17 @@
+{
+  "name": "aotsmp-tickets",
+  "version": "2.0.0",
+  "description": "Système de tickets AOTSMP",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "node deploy-commands.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "@discordjs/rest": "^2.3.0",
+    "discord-api-types": "^0.37.83",
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.9.4"
+  }
+}
