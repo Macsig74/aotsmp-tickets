@@ -13,7 +13,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pseudo')
-          .setLabel('Ton pseudo Minecraft ✦ OBLIGATOIRE')
+          .setLabel('Ton pseudo Minecraft ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Steve')
           .setRequired(true)
@@ -22,7 +22,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('age')
-          .setLabel('Ton âge ✦ OBLIGATOIRE')
+          .setLabel('Ton âge ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: 17')
           .setRequired(true)
@@ -31,7 +31,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('experience')
-          .setLabel('Expérience / anciens serveurs ✦ OBLIGATOIRE')
+          .setLabel('Expérience / anciens serveurs ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Serveurs staff, durée, rôle occupé...')
           .setRequired(true)
@@ -40,7 +40,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pourquoi')
-          .setLabel('Pourquoi rejoindre le staff ? ✦ OBLIGATOIRE')
+          .setLabel('Pourquoi rejoindre le staff ? ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Motive ta candidature de manière sérieuse...')
           .setRequired(true)
@@ -49,7 +49,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('dispos')
-          .setLabel('Disponibilités ✦ OBLIGATOIRE')
+          .setLabel('Disponibilités ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Lun-Ven 17h-21h, week-end libre')
           .setRequired(true)

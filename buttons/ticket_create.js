@@ -9,7 +9,7 @@ module.exports = {
     const setup = getSetup(interaction.guildId);
     if (!setup) return interaction.reply({
       embeds: [new EmbedBuilder().setColor(config.colors.danger).setTitle('❌ Non configuré').setDescription('Un admin doit lancer `/setup`.')],
-      ephemeral: true,
+      flags: 64,
     });
 
     const row1 = new ActionRowBuilder().addComponents(
@@ -28,7 +28,7 @@ module.exports = {
 
     await interaction.reply({
       embeds: [new EmbedBuilder().setColor(config.colors.primary).setTitle('🎫 Quel type de ticket ?').setDescription('Sélectionne le type correspondant à ta demande.')],
-      components: [row1, row2], ephemeral: true,
+      components: [row1, row2], flags: 64,
     });
   },
 };

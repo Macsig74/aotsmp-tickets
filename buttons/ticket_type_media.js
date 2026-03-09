@@ -6,22 +6,22 @@ module.exports = {
     const modal = new ModalBuilder().setCustomId('modal_media').setTitle('🎬 Candidature Média');
     modal.addComponents(
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('pseudo').setLabel('Ton pseudo Minecraft ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('pseudo').setLabel('Ton pseudo Minecraft ')
           .setStyle(TextInputStyle.Short).setPlaceholder('ex: Steve').setRequired(true).setMaxLength(20),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('lien_video').setLabel('Lien vers ta vidéo / chaîne ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('lien_video').setLabel('Lien vers ta vidéo / chaîne ')
           .setStyle(TextInputStyle.Short).setPlaceholder('https://youtube.com/...')
           .setRequired(true).setMaxLength(300),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('conditions').setLabel('Conditions remplies ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('conditions').setLabel('Conditions remplies ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Liste les conditions du rang média que tu as remplies (abonnés, vues, etc.)...')
           .setRequired(true).setMaxLength(600),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('ip_complete').setLabel('La vidéo affiche-t-elle l\'IP complète ? ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('ip_complete').setLabel('La vidéo affiche-t-elle l\'IP complète ? ')
           .setStyle(TextInputStyle.Short).setPlaceholder('Oui / Non')
           .setRequired(true).setMaxLength(10),
       ),

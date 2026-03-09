@@ -1,3 +1,4 @@
+
 // commands/rename.js
 const { SlashCommandBuilder } = require('discord.js');
 const config = require('../config');
@@ -40,7 +41,7 @@ module.exports = {
 
     await interaction.reply({
       embeds: [successEmbed('Ticket renommé', `Le ticket a été renommé en \`${prefix}${newName}\`.`)],
-      ephemeral: true,
+      flags: 64,
     });
 
     // LOG

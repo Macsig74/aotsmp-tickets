@@ -18,7 +18,7 @@ module.exports = {
         embeds: [new EmbedBuilder()
           .setColor(config.colors.danger)
           .setDescription('❌ Ce salon n\'est pas un ticket.')],
-        ephemeral: true,
+        flags: 64,
       });
     }
 
@@ -41,6 +41,6 @@ module.exports = {
         .setStyle(ButtonStyle.Secondary),
     );
 
-    await interaction.reply({ embeds: [confirmEmbed], components: [row], ephemeral: true });
+    await interaction.reply({ embeds: [confirmEmbed], components: [row], flags: 64 });
   },
 };

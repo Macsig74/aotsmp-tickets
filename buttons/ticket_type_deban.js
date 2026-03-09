@@ -13,7 +13,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pseudo')
-          .setLabel('Ton pseudo Minecraft ✦ OBLIGATOIRE')
+          .setLabel('Ton pseudo Minecraft ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Steve')
           .setRequired(true)
@@ -22,7 +22,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('raison_ban')
-          .setLabel('Raison du ban (selon toi) ✦ OBLIGATOIRE')
+          .setLabel('Raison du ban (selon toi) ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Quelle raison t\'a été donnée ? Que s\'est-il passé ?')
           .setRequired(true)
@@ -31,7 +31,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pourquoi_deban')
-          .setLabel('Pourquoi mérites-tu un déban ? ✦ OBLIGATOIRE')
+          .setLabel('Pourquoi mérites-tu un déban ? ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Argumente ta demande. Sois honnête et précis.')
           .setRequired(true)

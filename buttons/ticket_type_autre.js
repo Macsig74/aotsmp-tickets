@@ -13,7 +13,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pseudo')
-          .setLabel('Ton pseudo Minecraft ✦ OBLIGATOIRE')
+          .setLabel('Ton pseudo Minecraft ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Steve')
           .setRequired(true)
@@ -22,7 +22,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('sujet')
-          .setLabel('Sujet de ta demande ✦ OBLIGATOIRE')
+          .setLabel('Sujet de ta demande ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Problème de connexion, item perdu...')
           .setRequired(true)
@@ -31,7 +31,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('description')
-          .setLabel('Description complète ✦ OBLIGATOIRE')
+          .setLabel('Description complète ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Explique ton problème en détail. Plus tu es précis, plus on peut t\'aider rapidement.')
           .setRequired(true)

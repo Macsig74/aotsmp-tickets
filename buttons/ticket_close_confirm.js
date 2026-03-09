@@ -1,3 +1,7 @@
+
+
+
+
 // buttons/ticket_close_confirm.js
 const { EmbedBuilder } = require('discord.js');
 const config = require('../config');
@@ -8,7 +12,7 @@ module.exports = {
 
   async execute(interaction) {
     const ticket = getTicket(interaction.channelId);
-    if (!ticket) return interaction.reply({ content: '❌ Ticket introuvable.', ephemeral: true });
+    if (!ticket) return interaction.reply({ content: '❌ Ticket introuvable.', flags: 64 });
 
     const channel = interaction.channel;
     const guild = interaction.guild;

@@ -33,7 +33,7 @@ module.exports = {
 
     // ── DÉBAN ──
     if (customId === 'modal_deban') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo        = getField(interaction, 'pseudo');
       const raisonBan     = getField(interaction, 'raison_ban');
       const pourquoi      = getField(interaction, 'pourquoi_deban');
@@ -79,7 +79,7 @@ module.exports = {
 
     // ── PLAYER REPORT ──
     if (customId === 'modal_report') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo    = getField(interaction, 'pseudo');
       const userId    = getField(interaction, 'user_id');
       const lienPreuve= getField(interaction, 'lien_preuve');
@@ -102,7 +102,7 @@ module.exports = {
 
     // ── MEDIA ──
     if (customId === 'modal_media') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo     = getField(interaction, 'pseudo');
       const lienVideo  = getField(interaction, 'lien_video');
       const conditions = getField(interaction, 'conditions');
@@ -125,7 +125,7 @@ module.exports = {
 
     // ── BUG REPORT ──
     if (customId === 'modal_bug') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo       = getField(interaction, 'pseudo');
       const descBug      = getField(interaction, 'description_bug');
       const lienVideo    = getField(interaction, 'lien_video');
@@ -148,7 +148,7 @@ module.exports = {
 
     // ── PURCHASE SUPPORT ──
     if (customId === 'modal_achat') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo      = getField(interaction, 'pseudo');
       const plateforme  = getField(interaction, 'plateforme');
       const codeAchat   = getField(interaction, 'code_achat');
@@ -171,7 +171,7 @@ module.exports = {
 
     // ── CONNEXION ──
     if (customId === 'modal_connexion') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo     = getField(interaction, 'pseudo');
       const plateforme = getField(interaction, 'plateforme');
       const whereami   = getField(interaction, 'whereami');
@@ -194,7 +194,7 @@ module.exports = {
 
     // ── STAFF ──
     if (customId === 'modal_staff') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo = getField(interaction, 'pseudo'), age = getField(interaction, 'age'),
             experience = getField(interaction, 'experience'), pourquoi = getField(interaction, 'pourquoi'),
             dispos = getField(interaction, 'dispos');
@@ -215,7 +215,7 @@ module.exports = {
 
     // ── DEV ──
     if (customId === 'modal_dev') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo = getField(interaction, 'pseudo'), age = getField(interaction, 'age'),
             experience = getField(interaction, 'experience'), pourquoi = getField(interaction, 'pourquoi'),
             dispos = getField(interaction, 'dispos');
@@ -236,7 +236,7 @@ module.exports = {
 
     // ── MEDIA ──
     if (customId === 'modal_media') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo = getField(interaction, 'pseudo'), lienVideo = getField(interaction, 'lien_video'),
             conditions = getField(interaction, 'conditions'), ipComplete = getField(interaction, 'ip_complete');
       const fields = [
@@ -255,7 +255,7 @@ module.exports = {
 
     // ── AUTRE ──
     if (customId === 'modal_autre') {
-      await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ flags: 64 });
       const pseudo = getField(interaction, 'pseudo'), sujet = getField(interaction, 'sujet'),
             description = getField(interaction, 'description');
       const fields = [

@@ -18,9 +18,9 @@ module.exports = {
           .setTitle('❌ Erreur')
           .setDescription(`\`${err.message}\``);
         if (interaction.replied || interaction.deferred) {
-          await interaction.followUp({ embeds: [embed], ephemeral: true }).catch(() => {});
+          await interaction.followUp({ embeds: [embed], flags: 64 }).catch(() => {});
         } else {
-          await interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
+          await interaction.reply({ embeds: [embed], flags: 64 }).catch(() => {});
         }
       }
       return;
@@ -39,9 +39,9 @@ module.exports = {
           .setTitle('❌ Erreur')
           .setDescription(`\`${err.message}\``);
         if (interaction.replied || interaction.deferred) {
-          await interaction.followUp({ embeds: [embed], ephemeral: true }).catch(() => {});
+          await interaction.followUp({ embeds: [embed], flags: 64 }).catch(() => {});
         } else {
-          await interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
+          await interaction.reply({ embeds: [embed], flags: 64 }).catch(() => {});
         }
       }
     }

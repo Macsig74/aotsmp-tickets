@@ -6,7 +6,7 @@ module.exports = {
     const modal = new ModalBuilder().setCustomId('modal_report').setTitle('⚠️ Player Report');
     modal.addComponents(
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('pseudo').setLabel('Pseudo du joueur signalé ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('pseudo').setLabel('Pseudo du joueur signalé ')
           .setStyle(TextInputStyle.Short).setPlaceholder('Pseudo Minecraft du joueur à signaler')
           .setRequired(true).setMaxLength(20),
       ),
@@ -17,12 +17,12 @@ module.exports = {
           .setRequired(false).setMaxLength(30),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('lien_preuve').setLabel('Lien vidéo / preuve ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('lien_preuve').setLabel('Lien vidéo / preuve ')
           .setStyle(TextInputStyle.Short).setPlaceholder('URL — requis pour que le report soit traité')
           .setRequired(true).setMaxLength(300),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('raison').setLabel('Quelle règle a-t-il enfreinte ? ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('raison').setLabel('Quelle règle a-t-il enfreinte ? ')
           .setStyle(TextInputStyle.Paragraph).setPlaceholder('Indique quelle règle a été violée et comment')
           .setRequired(true).setMaxLength(500),
       ),

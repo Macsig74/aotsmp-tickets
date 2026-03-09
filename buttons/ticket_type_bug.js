@@ -6,21 +6,21 @@ module.exports = {
     const modal = new ModalBuilder().setCustomId('modal_bug').setTitle('🐛 Bug Report');
     modal.addComponents(
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('pseudo').setLabel('Ton pseudo Minecraft ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('pseudo').setLabel('Ton pseudo Minecraft ')
           .setStyle(TextInputStyle.Short).setPlaceholder('ex: Steve').setRequired(true).setMaxLength(20),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('description_bug').setLabel('Décris le bug ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('description_bug').setLabel('Décris le bug ')
           .setStyle(TextInputStyle.Paragraph).setPlaceholder('Explique le bug que tu rencontres en détail...')
           .setRequired(true).setMaxLength(700),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('lien_video').setLabel('Lien vidéo / enregistrement ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('lien_video').setLabel('Lien vidéo / enregistrement ')
           .setStyle(TextInputStyle.Short).setPlaceholder('Lien YouTube non répertorié de préférence')
           .setRequired(true).setMaxLength(300),
       ),
       new ActionRowBuilder().addComponents(
-        new TextInputBuilder().setCustomId('whereami').setLabel('Résultat de /whereami en jeu ✦ OBLIGATOIRE')
+        new TextInputBuilder().setCustomId('whereami').setLabel('Résultat de /whereami en jeu ')
           .setStyle(TextInputStyle.Short).setPlaceholder('Copie le résultat de la commande /whereami')
           .setRequired(true).setMaxLength(200),
       ),

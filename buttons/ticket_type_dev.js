@@ -13,7 +13,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pseudo')
-          .setLabel('Ton pseudo Minecraft ✦ OBLIGATOIRE')
+          .setLabel('Ton pseudo Minecraft ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Notch')
           .setRequired(true)
@@ -22,7 +22,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('age')
-          .setLabel('Ton âge ✦ OBLIGATOIRE')
+          .setLabel('Ton âge ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: 19')
           .setRequired(true)
@@ -31,7 +31,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('experience')
-          .setLabel('Langages & expérience dev ✦ OBLIGATOIRE')
+          .setLabel('Langages & expérience dev ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder('Java, Spigot, Paper, BungeeCord, JS... Projets / GitHub ?')
           .setRequired(true)
@@ -40,7 +40,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('pourquoi')
-          .setLabel('Pourquoi rejoindre AOTSMP ? ✦ OBLIGATOIRE')
+          .setLabel('Pourquoi rejoindre AOTSMP ? ')
           .setStyle(TextInputStyle.Paragraph)
           .setPlaceholder("Qu'est-ce que tu peux apporter concrètement ?")
           .setRequired(true)
@@ -49,7 +49,7 @@ module.exports = {
       new ActionRowBuilder().addComponents(
         new TextInputBuilder()
           .setCustomId('dispos')
-          .setLabel('Disponibilités ✦ OBLIGATOIRE')
+          .setLabel('Disponibilités ')
           .setStyle(TextInputStyle.Short)
           .setPlaceholder('ex: Lun-Ven soir, week-end')
           .setRequired(true)
