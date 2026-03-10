@@ -23,5 +23,14 @@ function logEmbed(action, ticket, executor, reason = null) {
   if (reason) embed.addFields({ name: '📝 Raison', value: reason, inline: false });
   return embed;
 }
+async function sendDM(guild, userId, embed) {
+  try {
+    const member = await guild.members.fetch(userId);
+    await member.user.send({ embeds: [embed] });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
-module.exports = { successEmbed, errorEmbed, infoEmbed, logEmbed };
+module.exports = { successEmbed, errorEmbed, infoEmbed, logEmbed, sendDM};
