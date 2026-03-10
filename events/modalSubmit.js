@@ -270,5 +270,50 @@ module.exports = {
         return interaction.editReply({ embeds: [new EmbedBuilder().setColor(config.colors.danger).setTitle('❌ Erreur').setDescription(e.message)] });
       }
     }
+    // ── UNBAN INGAME ──
+if (customId === 'modal_unban_confirm') {
+  await interaction.deferReply({ flags: 64 });
+  const pseudo = interaction.fields.getTextInputValue('pseudo_unban');
+  const raison = interaction.fields.getTextInputValue('raison_unban');
+  const { rconCommand } = require('../utils/rcon');
+  const { getSetup } = require('../utils/db');
+  const setup = getSetup(interaction.guildId);
+
+  try {
+    const result = await rconCommand(`pardon ${pseudo}`);
+    await interaction.channel.send({
+      embeds: [new EmbedBuilder()
+        .setColor(config.colors.success)
+        .setTitle('✅ Joueur unban ingame')
+        .addFields(
+          { name: '🎮 Pseudo', value: pseudo, inline: true },
+          { name: '📝 Raison', value: raison, inline: true },
+          { name: '👮 Par', value: `<@${interaction.user.id}>`, inline: true },
+          { name: '📡 Réponse RCON', value: result || 'OK', inline: false },
+        ).setTimestamp()],
+    });
+
+    if (setup?.logsChannelId) {
+      const logsChannel = interaction.guild.channels.cache.get(setup.logsChannelId);
+      if (logsChannel) await logsChannel.send({
+        embeds: [new EmbedBuilder()
+          .setColor(config.colors.success)
+          .setTitle('✅ Unban Ingame')
+          .addFields(
+            { name: '🎮 Pseudo', value: pseudo, inline: true },
+            { name: '📝 Raison', value: raison, inline: true },
+            { name: '👮 Staff', value: `<@${interaction.user.id}>`, inline: true },
+          ).setTimestamp()],
+      });
+    }
+
+    await interaction.editReply({ content: `✅ **${pseudo}** a été unban ingame.` });
+  } catch (err) {
+    await interaction.editReply({
+      embeds: [new EmbedBuilder().setColor(config.colors.danger).setTitle('❌ Erreur RCON').setDescription(`\`${err.message}\``)],
+    });
+  }
+}
   },
+  
 };
