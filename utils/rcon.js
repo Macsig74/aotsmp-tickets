@@ -2,58 +2,69 @@ const net = require('net');
 
 function rconCommand(command) {
   return new Promise((resolve, reject) => {
-    const client = new net.Socket();
     const host = process.env.RCON_HOST;
     const port = parseInt(process.env.RCON_PORT) || 25575;
     const password = process.env.RCON_PASSWORD;
 
+    const sock = new net.Socket();
     let authenticated = false;
-    let buffer = Buffer.alloc(0);
-
-    const writePacket = (id, type, body) => {
-      const bodyBuf = Buffer.from(body + '\0', 'utf8');
-      const packetLen = 4 + 4 + bodyBuf.length + 1;
-      const buf = Buffer.alloc(4 + packetLen);
-      buf.writeInt32LE(packetLen, 0);
-      buf.writeInt32LE(id, 4);
-      buf.writeInt32LE(type, 8);
-      bodyBuf.copy(buf, 12);
-      buf.writeUInt8(0, 12 + bodyBuf.length);
-      client.write(buf);
-    };
+    let buf = Buffer.alloc(0);
 
     const timeout = setTimeout(() => {
-      client.destroy();
+      sock.destroy();
       reject(new Error('RCON timeout'));
-    }, 5000);
+    }, 8000);
 
-    client.connect(port, host, () => {
-      writePacket(1, 3, password); // auth
-    });
+    const sendPacket = (id, type, body) => {
+      const bodyBuf = Buffer.from(body, 'utf8');
+      const length = 4 + 4 + bodyBuf.length + 2;
+      const packet = Buffer.alloc(4 + length);
+      packet.writeInt32LE(length, 0);
+      packet.writeInt32LE(id, 4);
+      packet.writeInt32LE(type, 8);
+      bodyBuf.copy(packet, 12);
+      packet.writeUInt8(0, 12 + bodyBuf.length);
+      packet.writeUInt8(0, 12 + bodyBuf.length + 1);
+      sock.write(packet);
+    };
 
-    client.on('data', (data) => {
-      buffer = Buffer.concat([buffer, data]);
-      while (buffer.length >= 12) {
-        const len = buffer.readInt32LE(0);
-        if (buffer.length < len + 4) break;
-        const id = buffer.readInt32LE(4);
-        const type = buffer.readInt32LE(8);
-        const body = buffer.slice(12, len + 4 - 2).toString('utf8');
-        buffer = buffer.slice(len + 4);
+    const readPackets = () => {
+      while (buf.length >= 4) {
+        const length = buf.readInt32LE(0);
+        if (buf.length < 4 + length) break;
+        const id = buf.readInt32LE(4);
+        const body = buf.slice(12, 4 + length - 2).toString('utf8');
+        buf = buf.slice(4 + length);
 
         if (!authenticated) {
-          if (id === -1) { clearTimeout(timeout); client.destroy(); return reject(new Error('Mot de passe RCON incorrect')); }
+          if (id === -1) {
+            clearTimeout(timeout);
+            sock.destroy();
+            return reject(new Error('Mot de passe RCON incorrect'));
+          }
           authenticated = true;
-          writePacket(2, 2, command); // exec
+          sendPacket(2, 2, command);
         } else {
           clearTimeout(timeout);
-          client.destroy();
-          resolve(body);
+          sock.destroy();
+          resolve(body || 'OK');
         }
       }
+    };
+
+    sock.connect(port, host, () => {
+      sendPacket(1, 3, password);
     });
 
-    client.on('error', (err) => { clearTimeout(timeout); reject(err); });
+    sock.on('data', (data) => {
+      buf = Buffer.concat([buf, data]);
+      readPackets();
+    });
+
+    sock.on('error', (err) => {
+      clearTimeout(timeout);
+      reject(err);
+    });
   });
 }
 

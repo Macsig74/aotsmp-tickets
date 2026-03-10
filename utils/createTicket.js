@@ -40,9 +40,9 @@ async function createTicket(interaction, type, pseudo, fields, extraData = {}) {
     .setTitle(`${typeConfig.emoji} ${typeConfig.label} — #${String(ticketId).padStart(4, '0')}`)
     .setDescription(config.messages.ticketWelcome(user.toString(), typeConfig.label))
     .addFields(
-      { name: '👤 Créateur Discord', value: `${user.tag}`, inline: true },
-      { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-      { name: '📅 Ouvert le', value: `<t:${Math.floor(Date.now() / 1000)}:F>`, inline: true },
+      { name: 'Créateur Discord', value: `${user.tag}`, inline: true },
+      { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+      { name: 'Ouvert le', value: `<t:${Math.floor(Date.now() / 1000)}:F>`, inline: true },
     )
     .setThumbnail(user.displayAvatarURL({ dynamic: true }))
     .setFooter({ text: 'AOTSMP • Support' })
@@ -76,11 +76,11 @@ async function createTicket(interaction, type, pseudo, fields, extraData = {}) {
           .setColor(config.colors.success)
           .setTitle(`🟢 Nouveau Ticket — ${typeConfig.label}`)
           .addFields(
-            { name: '📂 Salon', value: ticketChannel.toString(), inline: true },
-            { name: '👤 Créateur', value: `<@${user.id}>`, inline: true },
-            { name: '🎮 Pseudo MC', value: pseudo, inline: true },
-            { name: '🆔 ID', value: `#${String(ticketId).padStart(4, '0')}`, inline: true },
-            { name: '🏷️ Type', value: typeConfig.label, inline: true },
+            { name: 'Salon', value: ticketChannel.toString(), inline: true },
+            { name: 'Créateur', value: `<@${user.id}>`, inline: true },
+            { name: 'Pseudo MC', value: pseudo, inline: true },
+            { name: 'ID', value: `#${String(ticketId).padStart(4, '0')}`, inline: true },
+            { name: 'Type', value: typeConfig.label, inline: true },
           )
           .setTimestamp()],
       });

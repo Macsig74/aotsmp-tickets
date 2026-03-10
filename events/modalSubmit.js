@@ -55,8 +55,8 @@ module.exports = {
 
       const fields = [
         { name: '🎮 Pseudo banni', value: pseudo, inline: true },
-        { name: '📝 Raison du ban (selon toi)', value: raisonBan, inline: false },
-        { name: '🙏 Pourquoi mérites-tu un déban ?', value: pourquoi, inline: false },
+        { name: 'Raison du ban (selon toi)', value: raisonBan, inline: false },
+        { name: 'Pourquoi mérites-tu un déban ?', value: pourquoi, inline: false },
       ];
       if (preuves) fields.push({ name: '🔗 Preuves', value: preuves, inline: false });
       if (banInfo.banned) fields.push({
@@ -86,10 +86,10 @@ module.exports = {
       const raison    = getField(interaction, 'raison');
 
       const fields = [
-        { name: '🎮 Joueur signalé', value: pseudo, inline: true },
-        userId ? { name: '🆔 ID Discord', value: userId, inline: true } : null,
-        { name: '🔗 Lien preuve', value: lienPreuve, inline: false },
-        { name: '📋 Règle enfreinte', value: raison, inline: false },
+        { name: 'Joueur signalé', value: pseudo, inline: true },
+        userId ? { name: 'ID Discord', value: userId, inline: true } : null,
+        { name: 'Lien preuve', value: lienPreuve, inline: false },
+        { name: 'Règle enfreinte', value: raison, inline: false },
       ].filter(Boolean);
 
       try {
@@ -109,10 +109,10 @@ module.exports = {
       const ipComplete = getField(interaction, 'ip_complete');
 
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🎬 Lien vidéo / chaîne', value: lienVideo, inline: false },
-        { name: '✅ Conditions remplies', value: conditions, inline: false },
-        { name: '🌐 IP complète affichée ?', value: ipComplete, inline: true },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Lien vidéo / chaîne', value: lienVideo, inline: false },
+        { name: 'Conditions remplies', value: conditions, inline: false },
+        { name: 'IP complète affichée ?', value: ipComplete, inline: true },
       ];
 
       try {
@@ -132,10 +132,10 @@ module.exports = {
       const whereami     = getField(interaction, 'whereami');
 
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🐛 Description du bug', value: descBug, inline: false },
-        { name: '🎥 Lien vidéo / preuve', value: lienVideo, inline: false },
-        { name: '📍 /whereami', value: whereami, inline: false },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Description du bug', value: descBug, inline: false },
+        { name: 'Lien vidéo / preuve', value: lienVideo, inline: false },
+        { name: '/whereami', value: whereami, inline: false },
       ];
 
       try {
@@ -155,10 +155,10 @@ module.exports = {
       const probleme    = getField(interaction, 'probleme');
 
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🖥️ Plateforme & version', value: plateforme, inline: true },
-        { name: '🧾 Code transaction', value: codeAchat, inline: false },
-        { name: '❓ Problème', value: probleme, inline: false },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Plateforme & version', value: plateforme, inline: true },
+        { name: 'Code transaction', value: codeAchat, inline: false },
+        { name: 'Problème', value: probleme, inline: false },
       ];
 
       try {
@@ -178,10 +178,10 @@ module.exports = {
       const probleme   = getField(interaction, 'probleme');
 
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🖥️ Plateforme & version', value: plateforme, inline: true },
-        { name: '📍 /whereami', value: whereami, inline: false },
-        { name: '❓ Problème', value: probleme, inline: false },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Plateforme & version', value: plateforme, inline: true },
+        { name: '/whereami', value: whereami, inline: false },
+        { name: 'Problème', value: probleme, inline: false },
       ];
 
       try {
@@ -199,11 +199,11 @@ module.exports = {
             experience = getField(interaction, 'experience'), pourquoi = getField(interaction, 'pourquoi'),
             dispos = getField(interaction, 'dispos');
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🎂 Âge', value: age, inline: true },
-        { name: '📅 Disponibilités', value: dispos, inline: false },
-        { name: '🏆 Expérience / anciens serveurs', value: experience, inline: false },
-        { name: '💬 Pourquoi rejoindre le staff ?', value: pourquoi, inline: false },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Âge', value: age, inline: true },
+        { name: 'Disponibilités', value: dispos, inline: false },
+        { name: 'Expérience / anciens serveurs', value: experience, inline: false },
+        { name: 'Pourquoi rejoindre le staff ?', value: pourquoi, inline: false },
       ];
       try {
         const ch = await createTicket(interaction, 'staff', pseudo, fields, { age, experience, pourquoi, dispos });
@@ -220,11 +220,11 @@ module.exports = {
             experience = getField(interaction, 'experience'), pourquoi = getField(interaction, 'pourquoi'),
             dispos = getField(interaction, 'dispos');
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🎂 Âge', value: age, inline: true },
-        { name: '📅 Disponibilités', value: dispos, inline: false },
-        { name: '💻 Langages & Expérience dev', value: experience, inline: false },
-        { name: '🚀 Pourquoi rejoindre AOTSMP ?', value: pourquoi, inline: false },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Âge', value: age, inline: true },
+        { name: 'Disponibilités', value: dispos, inline: false },
+        { name: 'Langages & Expérience dev', value: experience, inline: false },
+        { name: 'Pourquoi rejoindre AOTSMP ?', value: pourquoi, inline: false },
       ];
       try {
         const ch = await createTicket(interaction, 'dev', pseudo, fields, { age, experience, pourquoi, dispos });
@@ -240,10 +240,10 @@ module.exports = {
       const pseudo = getField(interaction, 'pseudo'), lienVideo = getField(interaction, 'lien_video'),
             conditions = getField(interaction, 'conditions'), ipComplete = getField(interaction, 'ip_complete');
       const fields = [
-        { name: '🎮 Pseudo Minecraft', value: pseudo, inline: true },
-        { name: '🎬 Lien vidéo / chaîne', value: lienVideo, inline: false },
-        { name: '✅ Conditions remplies', value: conditions, inline: false },
-        { name: '🌐 IP complète affichée ?', value: ipComplete, inline: true },
+        { name: 'Pseudo Minecraft', value: pseudo, inline: true },
+        { name: 'Lien vidéo / chaîne', value: lienVideo, inline: false },
+        { name: 'Conditions remplies', value: conditions, inline: false },
+        { name: 'IP complète affichée ?', value: ipComplete, inline: true },
       ];
       try {
         const ch = await createTicket(interaction, 'media', pseudo, fields, { lienVideo, conditions, ipComplete });
@@ -280,16 +280,16 @@ if (customId === 'modal_unban_confirm') {
   const setup = getSetup(interaction.guildId);
 
   try {
-    const result = await rconCommand(`pardon ${pseudo}`);
+    const result = await rconCommand(`unban ${pseudo}`);
     await interaction.channel.send({
       embeds: [new EmbedBuilder()
         .setColor(config.colors.success)
         .setTitle('✅ Joueur unban ingame')
         .addFields(
-          { name: '🎮 Pseudo', value: pseudo, inline: true },
-          { name: '📝 Raison', value: raison, inline: true },
-          { name: '👮 Par', value: `<@${interaction.user.id}>`, inline: true },
-          { name: '📡 Réponse RCON', value: result || 'OK', inline: false },
+          { name: 'Pseudo', value: pseudo, inline: true },
+          { name: 'Raison', value: raison, inline: true },
+          { name: 'Par', value: `<@${interaction.user.id}>`, inline: true },
+          { name: 'Réponse RCON', value: result || 'OK', inline: false },
         ).setTimestamp()],
     });
 
@@ -300,9 +300,9 @@ if (customId === 'modal_unban_confirm') {
           .setColor(config.colors.success)
           .setTitle('✅ Unban Ingame')
           .addFields(
-            { name: '🎮 Pseudo', value: pseudo, inline: true },
-            { name: '📝 Raison', value: raison, inline: true },
-            { name: '👮 Staff', value: `<@${interaction.user.id}>`, inline: true },
+            { name: 'Pseudo', value: pseudo, inline: true },
+            { name: 'Raison', value: raison, inline: true },
+            { name: 'Staff', value: `<@${interaction.user.id}>`, inline: true },
           ).setTimestamp()],
       });
     }

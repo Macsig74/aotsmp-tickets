@@ -16,9 +16,9 @@ function logEmbed(action, ticket, executor, reason = null) {
     .setColor(colorMap[action] || config.colors.primary)
     .setTitle(`🎫 Ticket ${action}`)
     .addFields(
-      { name: '🆔 Ticket', value: `#${ticket.name || ticket.channelId}`, inline: true },
-      { name: '👤 Utilisateur', value: `<@${ticket.userId}>`, inline: true },
-      { name: '👮 Staff', value: executor ? `<@${executor.id}>` : 'Système', inline: true },
+      { name: 'Ticket', value: `#${ticket.name || ticket.channelId}`, inline: true },
+      { name: 'Utilisateur', value: `<@${ticket.userId}>`, inline: true },
+      { name: 'Staff', value: executor ? `<@${executor.id}>` : 'Système', inline: true },
     ).setTimestamp();
   if (reason) embed.addFields({ name: '📝 Raison', value: reason, inline: false });
   return embed;
